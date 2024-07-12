@@ -3,6 +3,15 @@ import java.util.Scanner;
 class BankAccount{
     private double Balance;
     private double amount;
+    private int pin=1234;
+    public void setpin(int pin) {
+    	this.pin=pin;
+    	System.out.println(" Your Pin is Resetted Successfully");
+    	System.out.println("New pin:"+pin);
+    }
+    public double getpin() {
+        return pin;
+    }
   public void  setBalance(double Balance){
     	this.Balance=Balance;
     }
@@ -40,27 +49,34 @@ class BankAccount{
     }
 }
 public class ATM {
-	
+	BankAccount b=new BankAccount();
 	 public static void main(String[] arg) {
     	 ATM a=new ATM();
-    	 a.run();
+    	 Scanner sc = new Scanner(System.in);
+    	 System.out.println("Enter your pin:");
+    	 int Apin=sc.nextInt();
+    	 if(Apin==a.b.getpin()) {
+    	 a.run();}
+    	 else
+    		 System.out.println("Invalid pin");
 	 }
-
+	 
+	 Scanner scanner = new Scanner(System.in);
 	
-	    public void displayMenu() {
+	    public static void displayMenu() {
 	        System.out.println("ATM Menu:");
 	        System.out.println("1.Check Balance");
 	        System.out.println("2. Deposit");
 	        System.out.println("3. Withdraw");
-	        System.out.println("4. Exit");
+	        System.out.println("4. Reset Pin");
+	        System.out.println("5. Exit");
 	    }
 
 	    public void run() {
-	        Scanner scanner = new Scanner(System.in);
-	        BankAccount b=new BankAccount();
+	        
+	    	 
 	        b.setBalance(10000);
-	        ATM a=new ATM();
-	        a.displayMenu();
+	        displayMenu();
 	        System.out.print("Select an option: ");
 	        while (true) {
 	            int choice = scanner.nextInt();
@@ -79,9 +95,20 @@ public class ATM {
 	                    double Amount = scanner.nextDouble();
 	                    b.withdraw( Amount);
 	                    break;
-	                case 4:
+	                case 4:{
+	                	System.out.print("Enter Your new pin: ");
+	                	int Newpin=scanner.nextInt();
+	                	System.out.print("Confirm Your  pin: ");
+	                	int cpin=scanner.nextInt();
+	                	if(Newpin==cpin) {
+	                		b.setpin(cpin);
+	                	}
+	                break;
+	                }
+	                	
+	                case 5:
 	                    System.out.println("Thank you for using the ATM!");
-	                    scanner.close();
+	                    break;
 	                    
 	                default:
 	                    System.out.println("Invalid option. Please select a valid option");
