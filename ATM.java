@@ -7,7 +7,6 @@ class BankAccount{
     public void setpin(int pin) {
     	this.pin=pin;
     	System.out.println(" Your Pin is Resetted Successfully");
-    	System.out.println("New pin:"+pin);
     }
     public double getpin() {
         return pin;
@@ -50,18 +49,15 @@ class BankAccount{
 }
 public class ATM {
 	BankAccount b=new BankAccount();
+	
 	 public static void main(String[] arg) {
     	 ATM a=new ATM();
-    	 Scanner sc = new Scanner(System.in);
-    	 System.out.println("Enter your pin:");
-    	 int Apin=sc.nextInt();
-    	 if(Apin==a.b.getpin()) {
-    	 a.run();}
-    	 else
-    		 System.out.println("Invalid pin");
+    		 a.run();
+    	 
 	 }
+    	
 	 
-	 Scanner scanner = new Scanner(System.in);
+	
 	
 	    public static void displayMenu() {
 	        System.out.println("ATM Menu:");
@@ -73,8 +69,10 @@ public class ATM {
 	    }
 
 	    public void run() {
-	        
-	    	 
+	    	Scanner scanner = new Scanner(System.in);
+       	 System.out.println("Enter your pin:");
+       	 int Apin=scanner.nextInt();
+       	 if(Apin==b.getpin()) {
 	        b.setBalance(10000);
 	        displayMenu();
 	        System.out.print("Select an option: ");
@@ -108,16 +106,20 @@ public class ATM {
 	                	
 	                case 5:
 	                    System.out.println("Thank you for using the ATM!");
+	                    run();
 	                    break;
 	                    
 	                default:
 	                    System.out.println("Invalid option. Please select a valid option");
 	            }
 	        }
-
+       	 }
+	        else
+       		 System.out.println("Invalid pin");
+       	 
+	    
 	    }
 	    
-
 }  
 	   
 
